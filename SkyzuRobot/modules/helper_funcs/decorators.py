@@ -1,4 +1,4 @@
-from SkyzuRobot.modules.disable import (
+from KilluaRobot.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
@@ -9,11 +9,11 @@ from telegram.ext import (
     InlineQueryHandler,
 )
 from telegram.ext.filters import BaseFilter
-from SkyzuRobot import dispatcher as d, LOGGER
+from KilluaRobot import dispatcher as d, LOGGER
 from typing import Optional, Union, List
 
 
-class SkyzuHandler:
+class KilluaHandler:
     def __init__(self, d):
         self._dispatcher = d
 
@@ -54,7 +54,7 @@ class SkyzuHandler:
                         group,
                     )
                 LOGGER.debug(
-                    f"[SkyzuCMD] Loaded handler {command} for function {func.__name__} in group {group}"
+                    f"[KilluaCMD] Loaded handler {command} for function {func.__name__} in group {group}"
                 )
             except TypeError:
                 if can_disable:
@@ -81,7 +81,7 @@ class SkyzuHandler:
                         )
                     )
                 LOGGER.debug(
-                    f"[SkyzuCMD] Loaded handler {command} for function {func.__name__}"
+                    f"[KilluaCMD] Loaded handler {command} for function {func.__name__}"
                 )
 
             return func
@@ -110,7 +110,7 @@ class SkyzuHandler:
                         MessageHandler(pattern, func, run_async=run_async), group
                     )
                 LOGGER.debug(
-                    f"[SkyzuMSG] Loaded filter pattern {pattern} for function {func.__name__} in group {group}"
+                    f"[KilluaMSG] Loaded filter pattern {pattern} for function {func.__name__} in group {group}"
                 )
             except TypeError:
                 if can_disable:
@@ -124,7 +124,7 @@ class SkyzuHandler:
                         MessageHandler(pattern, func, run_async=run_async)
                     )
                 LOGGER.debug(
-                    f"[SkyzuMSG] Loaded filter pattern {pattern} for function {func.__name__}"
+                    f"[KilluaMSG] Loaded filter pattern {pattern} for function {func.__name__}"
                 )
 
             return func
@@ -139,7 +139,7 @@ class SkyzuHandler:
                 )
             )
             LOGGER.debug(
-                f"[SkyzuCALLBACK] Loaded callbackquery handler with pattern {pattern} for function {func.__name__}"
+                f"[KilluaCALLBACK] Loaded callbackquery handler with pattern {pattern} for function {func.__name__}"
             )
             return func
 
@@ -165,14 +165,14 @@ class SkyzuHandler:
                 )
             )
             LOGGER.debug(
-                f"[SkyzuINLINE] Loaded inlinequery handler with pattern {pattern} for function {func.__name__} | PASSES USER DATA: {pass_user_data} | PASSES CHAT DATA: {pass_chat_data} | CHAT TYPES: {chat_types}"
+                f"[KilluaINLINE] Loaded inlinequery handler with pattern {pattern} for function {func.__name__} | PASSES USER DATA : {pass_user_data} | PASSES CHAT DATA: {pass_chat_data} | CHAT TYPES : {chat_types}"
             )
             return func
 
         return _inlinequery
 
 
-Skyzucmd = SkyzuHandler(d).command
-Skyzumsg = SkyzuHandler(d).message
-Skyzucallback = SkyzuHandler(d).callbackquery
-Skyzuinline = SkyzuHandler(d).inlinequery
+Killuacmd = KilluaHandler(d).command
+Killuamsg = KilluaHandler(d).message
+Killuacallback = KilluaHandler(d).callbackquery
+Killuainline = KilluaHandler(d).inlinequery
