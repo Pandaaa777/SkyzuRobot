@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from SkyzuRobot import NO_LOAD
+from KilluaRobot import NO_LOAD
 from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, ParseMode
 from telegram.error import TelegramError
 
@@ -72,7 +72,7 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
         pairs.append((modules[-1],))
 
     else:
-        pairs += [[EqInlineKeyboardButton("Go Home", callback_data="Skyzu_back")]]
+        pairs += [[EqInlineKeyboardButton("Go Home", callback_data="Killua_back")]]
 
     return pairs
 
