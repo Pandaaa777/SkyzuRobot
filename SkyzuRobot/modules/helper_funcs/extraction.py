@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from SkyzuRobot import LOGGER
-from SkyzuRobot.modules.users import get_user_id
+from KilluaRobot import LOGGER
+from KilluaRobot.modules.users import get_user_id
 from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 
@@ -49,7 +49,7 @@ def extract_user_and_text(
         if not user_id:
             message.reply_text(
                 "No idea who this user is. You'll be able to interact with them if "
-                "you reply to that person's message instead, or forward one of that user's messages.",
+                "you reply to that person's message instead, or forward one of that user's messages",
             )
             return None, None
         res = message.text.split(None, 2)
