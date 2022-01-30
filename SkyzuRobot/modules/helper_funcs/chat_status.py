@@ -2,7 +2,7 @@ from time import perf_counter
 from functools import wraps
 from cachetools import TTLCache
 from threading import RLock
-from SkyzuRobot import (
+from KilluaRobot import (
     DEL_CMDS,
     DEV_USERS,
     DRAGONS,
@@ -114,8 +114,8 @@ def dev_plus(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "This is a developer restricted command."
-                " You do not have permissions to run this.",
+                "This is a developer restricted command"
+                " You do not have permissions to run this",
             )
 
     return is_dev_plus_func
@@ -178,7 +178,7 @@ def whitelist_plus(func):
         if user and is_whitelist_plus(chat, user.id):
             return func(update, context, *args, **kwargs)
         update.effective_message.reply_text(
-            f"You don't have access to use this.\nVisit @{SUPPORT_CHAT}",
+            f"You don't have access to use this\nVisit @{SUPPORT_CHAT}",
         )
 
     return is_whitelist_plus_func
@@ -277,9 +277,9 @@ def bot_can_delete(func):
         message_chat_title = update.effective_message.chat.title
 
         if update_chat_title == message_chat_title:
-            cant_delete = "I can't delete messages here!\nMake sure I'm admin and can delete other user's messages."
+            cant_delete = "I can't delete messages here!\nMake sure I'm admin and can delete other user's messages"
         else:
-            cant_delete = f"I can't delete messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can delete other user's messages there."
+            cant_delete = f"I can't delete messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can delete other user's messages there"
 
         if can_delete(chat, bot.id):
             return func(update, context, *args, **kwargs)
@@ -298,10 +298,10 @@ def can_pin(func):
 
         if update_chat_title == message_chat_title:
             cant_pin = (
-                "I can't pin messages here!\nMake sure I'm admin and can pin messages."
+                "I can't pin messages here!\nMake sure I'm admin and can pin messages"
             )
         else:
-            cant_pin = f"I can't pin messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can pin messages there."
+            cant_pin = f"I can't pin messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can pin messages there"
 
         if chat.get_member(bot.id).can_pin_messages:
             return func(update, context, *args, **kwargs)
@@ -342,9 +342,9 @@ def can_restrict(func):
         message_chat_title = update.effective_message.chat.title
 
         if update_chat_title == message_chat_title:
-            cant_restrict = "I can't restrict people here!\nMake sure I'm admin and can restrict users."
+            cant_restrict = "I can't restrict people here!\nMake sure I'm admin and can restrict users"
         else:
-            cant_restrict = f"I can't restrict people in <b>{update_chat_title}</b>!\nMake sure I'm admin there and can restrict users."
+            cant_restrict = f"I can't restrict people in <b>{update_chat_title}</b>!\nMake sure I'm admin there and can restrict users"
 
         if chat.get_member(bot.id).can_restrict_members:
             return func(update, context, *args, **kwargs)
@@ -368,7 +368,7 @@ def user_can_ban(func):
             and user not in [777000, 1087968824]
         ):
             update.effective_message.reply_text(
-                "Sorry son, but you're not worthy to wield the banhammer.",
+                "Sorry son, but you're not worthy to wield the banhammer",
             )
             return ""
         return func(update, context, *args, **kwargs)
@@ -393,7 +393,7 @@ def connection_status(func):
             return func(update, context, *args, **kwargs)
         if update.effective_message.chat.type == "private":
             update.effective_message.reply_text(
-                "Send /connect in a group that you and I have in common first.",
+                "Send /connect in a group that you and I have in common first",
             )
             return connected_status
 
@@ -403,6 +403,6 @@ def connection_status(func):
 
 
 # Workaround for circular import with connection.py
-from SkyzuRobot.modules import connection
+from KilluaRobot.modules import connection
 
 connected = connection.connected
