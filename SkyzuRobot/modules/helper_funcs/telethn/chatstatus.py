@@ -1,5 +1,5 @@
-from SkyzuRobot.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
-from SkyzuRobot import DRAGONS
+from KilluaRobot.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
+from KilluaRobot import DRAGONS
 from telethon.tl.types import ChannelParticipantsAdmins
 
 
